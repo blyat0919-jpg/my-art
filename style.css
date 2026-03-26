@@ -20,16 +20,14 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+@-webkit-keyframes subtleFadeUp {
+    0% { -webkit-transform: translateY(30px); opacity: 0; }
+    100% { -webkit-transform: translateY(0); opacity: 1; }
+}
 
 @keyframes subtleFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 /* Header Section */
@@ -288,14 +286,14 @@ footer p {
 
 
 /* =========================================
-   CLEAN TOP NAVIGATION BAR
+   CLEAN TOP NAVIGATION BAR (RESPONSIVE FIX)
    ========================================= */
 .main-nav {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    padding: 30px 60px;
+    padding: 30px 5%;
     width: 100%;
     position: absolute; 
     top: 0;
@@ -303,14 +301,7 @@ footer p {
     z-index: 1000;
 }
 
-/* Responsive padding for smaller screens */
-@media (max-width: 768px) {
-    .main-nav {
-        padding: 20px 30px;
-    }
-}
-
-/* Left Side: "My artworks" (Logo Style) */
+/* Left Side: Logo */
 .nav-logo {
     font-family: 'Brush Script MT', 'Lucida Handwriting', cursive; 
     font-size: 2.8rem;
@@ -325,11 +316,24 @@ footer p {
     color: #eaa3d6;
 }
 
+/* Center: "Made by" Signature */
+.nav-made-by {
+    font-size: 1.05rem;
+    color: #7fa99b; 
+    font-family: 'Georgia', serif; 
+    font-style: italic;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 0 15px; /* Acts as a bumper */
+}
+
 /* Right Side: Navigation Links */
 .nav-links {
     display: flex;
-    gap: 40px; 
+    flex-wrap: wrap; /* Allows links to wrap if they get too tight */
+    gap: 30px; 
     align-items: center;
+    justify-content: center;
 }
 
 .nav-link {
@@ -344,18 +348,58 @@ footer p {
     color: #7fa99b; 
 }
 
-/* Make sure the header text gets pushed down below the new nav bar */
+/* Make sure the header text gets pushed down below the nav bar */
 header {
     position: relative; 
     text-align: center;
     padding: 160px 20px 40px; 
     background-color: transparent; 
     opacity: 0;
+    -webkit-animation: subtleFadeUp 1s ease-out 0.1s forwards;
     animation: subtleFadeUp 1s ease-out 0.1s forwards;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+/* =========================================
+   TABLET & MOBILE VIEW (The Overlap Fix)
+   ========================================= */
+/* When the screen hits 900px (iPads/Phones), stack the nav bar neatly! */
+@media (max-width: 900px) {
+    .main-nav {
+        flex-direction: column; /* Stacks items vertically */
+        justify-content: center;
+        padding: 20px 10px;
+        gap: 15px; /* Space between the three rows */
+    }
+    
+    .nav-logo {
+        font-size: 2.3rem; /* Shrinks the logo just a tiny bit on phones */
+        text-align: center;
+        margin: 0;
+    }
+
+    .nav-made-by {
+        position: static !important; /* ⬅️ THE MAGIC FIX: Forces it to stop overlapping! */
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4; /* Gives the two lines of text some breathing room */
+    }
+
+    .nav-links {
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 15px; 
+        margin: 0;
+    }
+    
+    header {
+        padding-top: 240px; /* Pushes the main text down to clear the taller nav bar */
+    }
 }
 
 /* =========================================
@@ -581,7 +625,13 @@ html {
     font-weight: bold;
     box-shadow: 0 10px 25px rgba(217, 83, 79, 0.2);
     
+    -webkit-animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@-webkit-keyframes popIn {
+    0% { -webkit-transform: scale(0.8); opacity: 0; }
+    100% { -webkit-transform: scale(1); opacity: 1; }
 }
 
 @keyframes popIn {
@@ -605,6 +655,7 @@ html {
     margin: 0 auto;
     padding: 160px 20px 60px;
     opacity: 0;
+    -webkit-animation: subtleFadeUp 1s ease-out 0.2s forwards;
     animation: subtleFadeUp 1s ease-out 0.2s forwards;
 }
 
@@ -738,24 +789,3 @@ html {
     line-height: 1.6;
 }
 
-/* =========================================
-   CENTER NAVIGATION TEXT
-   ========================================= */
-
-.nav-made-by {
-    position: absolute; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    font-size: 1.05rem;
-    color: #7fa99b; 
-    font-family: 'Georgia', serif; 
-    font-style: italic;
-    letter-spacing: 1px;
-}
-
-
-@media (max-width: 600px) {
-    .nav-made-by {
-        display: none;
-    }
-}
