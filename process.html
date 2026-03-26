@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process & FAQ | Art Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-logo">My artworks</a>
+        <span class="nav-made-by">Made by CASA, KURT NEIL - BSIT-12E1</span>
+        <div class="nav-links">
+            <a href="welcome.html" class="nav-link">About Me</a>
+            <a href="Main.html#tos" class="nav-link">Terms of Service</a> 
+        </div>
+    </nav>
+
+    <main class="process-container">
+        
+        <h1 class="process-heading">How to Commission Me</h1>
+        <p class="process-intro">A quick guide to my workflow so you know exactly what to expect!</p>
+
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>The Request</h3>
+                    <p>Send me a DM with your character references, desired pose, and the type of commission you want (e.g., Full Body). I will review it and confirm the price!</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Payment & Sketch</h3>
+                    <p>Once an invoice is paid via PayPal, I will start the initial sketch. I will send you this sketch for approval, and you can request major changes here.</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Lineart & Base Colors</h3>
+                    <p>After sketch approval, I move on to clean lines and flat colors. I will send one final check-in to make sure the colors are perfect.</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Final Render</h3>
+                    <p>I add shading, lighting, and final details! You will receive a high-resolution PNG file of your completed artwork via email or Google Drive.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="faq-heading">Frequently Asked Questions</h2>
+        
+        <div class="faq-container">
+            <button class="accordion">How long does a commission take?</button>
+            <div class="panel">
+                <p>Usually between 1 to 3 weeks depending on the complexity of the piece and my current queue. I will always keep you updated if there are delays!</p>
+            </div>
+
+            <button class="accordion">Can I use the artwork for my Twitch/YouTube?</button>
+            <div class="panel">
+                <p>Personal commissions are for personal use only! If you need commercial rights for streaming, merch, or branding, please let me know upfront as it requires a commercial fee (usually +50% of the base price).</p>
+            </div>
+
+            <button class="accordion">Do you offer refunds?</button>
+            <div class="panel">
+                <p>100% refunds are available ONLY if I have not started the sketch. Once the sketch is approved, I can only offer partial refunds based on how much work has been completed.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vy. Contact me at vynniebear@gmail.com</p>
+    </footer>
+
+    <script>
+        // =======================================================
+        // REQUIREMENT: DOM Manipulation & CSS Class Toggling
+        // =======================================================
+        const accordions = document.querySelectorAll(".accordion");
+
+        accordions.forEach(acc => {
+            acc.addEventListener("click", function() {
+                // Toggle the 'active' class to change the button color
+                this.classList.toggle("active-acc");
+
+                // Find the hidden text panel right below the button
+                const panel = this.nextElementSibling;
+                
+                // If it's open, close it. If it's closed, open it!
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
