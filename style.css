@@ -103,17 +103,18 @@ header p {
 .commission-card {
     display: flex;
     flex-direction: row; 
-    background: #ffffff;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55); /* Semi-transparent white */
+    backdrop-filter: blur(12px); /* The frosted glass magic */
+    -webkit-backdrop-filter: blur(12px); /* For Apple devices */
+    border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(240, 240, 240, 0.8);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.04); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     text-decoration: none; 
     color: inherit; 
     cursor: pointer;
     
-    /* Animation settings */
     opacity: 0;
     animation: subtleFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -126,8 +127,9 @@ header p {
 .commission-card:nth-child(5) { animation-delay: 1.0s; }
 
 .commission-card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transform: translateY(-8px); 
+    border-color: rgba(244, 184, 228, 0.6); /* Soft pink border appears */
+    box-shadow: 0 15px 40px rgba(244, 184, 228, 0.25); /* Pink glow */
 }
 
 .commission-img {
@@ -208,22 +210,32 @@ header p {
 
 .example-item img {
     width: 100%;
-    height: 300px; 
-    object-fit: contain;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.example-item img {
-    width: 100%;
     height: 300px;
     object-fit: contain;
     display: block;
+    border-radius: 8px; 
     transition: transform 0.4s ease;
+}
+
+.example-item {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(244, 184, 228, 0.3); 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+    position: relative; 
 }
 
 .example-item:hover img {
     transform: scale(1.05); 
+}
+
+.example-item:hover {
+    transform: translateY(-8px);
+    border-color: #f4b8e4; 
+    box-shadow: 0 15px 35px rgba(244, 184, 228, 0.3); 
 }
 
 /* Do's and Don'ts Section */
@@ -243,12 +255,14 @@ header p {
 
 .info-box {
     flex: 1;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(240, 240, 240, 0.8);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
 
 .info-box h3 {
@@ -267,6 +281,11 @@ header p {
     list-style-position: inside;
     color: #666666;
     line-height: 1.8;
+}
+
+.info-box:hover {
+    transform: translateY(-3px);
+    border-color: rgba(127, 169, 155, 0.4); /* Sage green border on hover */
 }
 
 /* Footer */
@@ -415,28 +434,46 @@ html {
 }
 
 /* The massive hero image at the top */
+/* The massive hero image at the top - FROSTED UPGRADE */
 .about-hero-art {
     width: 100%;
     height: auto; 
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 10px; /* Creates a frosted inner frame */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 15px 40px rgba(244, 184, 228, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.8);
     margin-bottom: 50px;
-    transition: transform 0.4s ease;
+    transition: all 0.5s ease;
     display: block;
 }
 
 .about-hero-art:hover {
-    transform: scale(1.01); 
+    transform: translateY(-5px) scale(1.01); 
+    border-color: #f4b8e4;
+    box-shadow: 0 20px 50px rgba(244, 184, 228, 0.35);
 }
 
 .about-heading {
-    font-size: 3.5rem;
-    color: #333333;
+    font-size: 3.8rem;
     margin-bottom: 20px;
     text-align: center;
     font-family: 'Brush Script MT', 'Lucida Handwriting', cursive; 
-    color: #f4b8e4;
+    
+    /* Magical Gradient Text */
+    background: linear-gradient(45deg, #f4b8e4, #7fa99b, #eaa3d6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 4s linear infinite;
+    text-shadow: 0px 4px 15px rgba(244, 184, 228, 0.2);
+}
+
+@keyframes textShimmer {
+    to { background-position: 200% center; }
 }
 
 /* The large, readable bio paragraph */
@@ -467,6 +504,33 @@ html {
     .about-heading { font-size: 2.5rem; }
     .about-intro { font-size: 1.2rem; }
     .about-hero-art { height: 300px; }
+}
+
+.about-col {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 35px 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s ease;
+}
+
+.about-col:hover {
+    transform: translateY(-8px);
+    border-color: rgba(127, 169, 155, 0.5); 
+    box-shadow: 0 15px 40px rgba(127, 169, 155, 0.15);
+}
+
+.about-col h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7fa99b; 
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(127, 169, 155, 0.2); 
+    padding-bottom: 10px;
 }
 
 .about-col h3 {
@@ -518,26 +582,29 @@ html {
 .portfolio-btn {
     display: inline-block;
     padding: 18px 50px;
-    background-color: #f4b8e4; 
+    background: rgba(244, 184, 228, 0.85); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     color: #ffffff;
     text-decoration: none;
     border-radius: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 1px;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 10px 25px rgba(244, 184, 228, 0.4); 
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(244, 184, 228, 0.3); 
 }
 
 .portfolio-btn:hover {
     transform: translateY(-4px) scale(1.02); 
-    background-color: #eaa3d6; 
-    box-shadow: 0 15px 35px rgba(244, 184, 228, 0.6);
+    background: rgba(234, 163, 214, 0.95); 
+    border-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(244, 184, 228, 0.5);
 }
 
 /* =========================================
-   BANNER EXAMPLES PAGE FIX
+   BANNER EXAMPLES PAGE 
    ========================================= */
 
 .banner-grid {
@@ -549,18 +616,29 @@ html {
 }
 
 .banner-item {
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid #f0f0f0;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(244, 184, 228, 0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+    transition: all 0.4s ease;
+    padding: 15px; 
 }
 
 .banner-item img {
     width: 100%; 
     height: auto; 
     display: block;
+    border-radius: 8px; 
     transition: transform 0.4s ease;
+}
+
+.banner-item:hover {
+    transform: translateY(-5px);
+    border-color: #f4b8e4;
+    box-shadow: 0 15px 35px rgba(244, 184, 228, 0.25);
 }
 
 .banner-item:hover img {
@@ -583,7 +661,7 @@ html {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    align-self: flex-start; /* Keeps the button from stretching across the whole card */
+    align-self: flex-start; 
     box-shadow: 0 4px 15px rgba(127, 169, 155, 0.3);
 }
 
@@ -708,17 +786,20 @@ html {
 }
 
 .step-content {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 20px 25px;
-    border-radius: 12px;
-    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 8px 25px rgba(0,0,0,0.03);
-    transition: transform 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .step-content:hover {
-    transform: translateX(5px);
-    border-color: #f4b8e4;
+    transform: translateX(8px);
+    border-color: rgba(244, 184, 228, 0.8); 
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .step-content h3 {
@@ -739,26 +820,28 @@ html {
 }
 
 .accordion {
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: #333333;
     cursor: pointer;
     padding: 20px;
     width: 100%;
-    border: 1px solid #f0f0f0;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
     text-align: left;
     outline: none;
     font-size: 1.1rem;
     font-weight: bold;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 
 /* Change color when hovered or opened */
 .accordion:hover, .active-acc {
-    background-color: #f9f9f9;
-    color: #f4b8e4;
-    border-color: #f4b8e4;
+    background: rgba(255, 255, 255, 0.8);
+    color: #eaa3d6;
+    border-color: rgba(244, 184, 228, 0.6);
 }
 
 /* Adds a plus sign that turns into a minus sign */
@@ -777,15 +860,28 @@ html {
 /* The hidden text panel */
 .panel {
     padding: 0 20px;
-    background-color: white;
+    background-color: transparent; 
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out; 
 }
-
 .panel p {
     padding: 20px 0;
     color: #666666;
     line-height: 1.6;
 }
 
+.art-tag {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    background-color: #7fa99b; 
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(127, 169, 155, 0.4);
+    z-index: 10;
+}
